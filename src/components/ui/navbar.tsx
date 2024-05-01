@@ -32,8 +32,8 @@ function Nav () {
         : <BackButton className='fill-slate-800' />}
         
         <Logo />
-        
-        <CounterSettings className={cn(!isRoot && 'invisible')} />
+
+        <CounterSettings className={cn(!isRoot ? 'invisible' : '')} />
       
       </nav>
       {isRoot && isRowNums ? <CounterProgress /> 
@@ -43,7 +43,11 @@ function Nav () {
   );
 }
 
-const BackButton = () => {
+interface BackButtonProps {
+  className?:string
+}
+
+const BackButton = ({className}:BackButtonProps) => {
   return (
     <Link href='/'>
       <Button size='icon' variant='ghost'><IoIosArrowBack className='fill-slate-800' size={24} /></Button>

@@ -67,7 +67,7 @@ const CounterSettings: React.FC<CounterSettingsProps> = ({className}) => {
 
   return (
     <div className={cn("flex items-center justify-center", className)} >
-      <Sheet className='bg-neutral-300'>
+      <Sheet>
         <SheetTrigger asChild>
           <Button variant="ghost" size="icon">
             <FaGears size={20} className='fill-slate-700' />

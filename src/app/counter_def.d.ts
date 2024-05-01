@@ -16,10 +16,10 @@ export type CounterType = {
     setTitle:(title:string) => void,
     setCount:(count:number) => void,
     setNumOfRows:(numOfRows:number) => void,
-    setReminder:(reminder:CounterType) => void,
-    updateReminder:(updatedReminder:CounterType) => void,
+    setReminder:(reminder:ReminderType) => void,
+    updateReminder:(updatedReminder:ReminderType) => void,
     deleteReminder:(id:number) => void,
-    toggleSound:() => void,
+    toggleSound: () => void,
 }
 
 export type StorageType = {

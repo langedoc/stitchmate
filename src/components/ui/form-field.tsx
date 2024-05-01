@@ -10,7 +10,7 @@ interface FormFieldProps {
 export default function FormField ({children, className}:FormFieldProps) {
 
   return (
-    <div className={cn('flex items-center bg-sand rounded-lg px-3 min-h-12', className)} >
+    <div className={cn('flex items-center bg-sand rounded-lg px-3 min-h-12', className ? className : '')} >
       {children}
     </div>
   );

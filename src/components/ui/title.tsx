@@ -50,7 +50,7 @@ interface CounterTitleProps {
 export function CounterTitle({ className }: CounterTitleProps) {
   const { title } = useStore(); 
   return (
-    <Title variant="center" className={className}>
+    <Title variant="center" className={className ? className : ''}>
       {title}
     </Title>
   );
