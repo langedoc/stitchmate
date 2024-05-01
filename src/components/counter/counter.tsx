@@ -21,7 +21,7 @@ export default function Counter () {
 
   return (
     <div className='relative flex items-center justify-center'>
-      <button className='text-8xl text-center z-10 relative text-zinc-800 p-16' onClick={handleClick}>
+      <button data-cy="count-up" className='text-8xl text-center z-10 relative text-zinc-800 p-16' onClick={handleClick}>
         <span>{count}</span>
       </button>
       {blob}

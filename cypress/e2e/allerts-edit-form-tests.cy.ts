@@ -4,7 +4,7 @@ describe('template spec', () => {
   })
   context('Main page', () => {
     it('Add new reminder button rendered with correct text', () => {
-      cy.get("[data-test='add-reminder']").contains('Add a new reminder');
+      cy.get("[data-cy='add-reminder-button']").contains('Add a new reminder');
     })
   
     it('Renders allerts', () => {
@@ -32,10 +32,6 @@ describe('template spec', () => {
       cy.get("button").contains(/save changes/i).click()
       cy.location("pathname").should("equal", "/")
     })
-    
-
-
-
   })
 
 })

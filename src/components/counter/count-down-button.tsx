@@ -16,7 +16,7 @@ export default function CountDownButton () {
   }
 
   return (
-    <Button size='icon' variant='secondary' className='' onClick={handleCountDown}>
+    <Button data-cy="count-down" size='icon' variant='secondary' className='' onClick={handleCountDown}>
       <FaMinus className='fill-neutral-50' />
     </Button>
   );
