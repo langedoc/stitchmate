@@ -23,6 +23,7 @@ import {Checkbox} from '../ui/checkbox';
 import Label from "../ui/label";
 import Input from "../ui/input";
 import { CounterType } from "@/app/counter_def";
+import { AnyAaaaRecord } from "dns";
 
 
 interface ReminderFormProps {
@@ -46,7 +47,7 @@ export default function ReminderForm ({className, handleFormSubmit, reminder}:Re
   const [repeatValue2, setRepeatValue2] = useState(reminder.repeat.times || reminder.repeat.until || '');
   const [repeatValue3, setRepeatValue3] = useState(reminder.repeat.start || count);
 
-  function handleTypeChange (value: "every" | "for-rows" | undefined) {
+  function handleTypeChange (value: "every" | "for-rows" | any) {
     setReminderType(value);
   }
 
