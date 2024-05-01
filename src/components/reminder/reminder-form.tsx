@@ -109,7 +109,7 @@ export default function ReminderForm ({className, handleFormSubmit, reminder}:Re
       
       <h3 className='font-semibold text-slate-800 pl-1 pt-2 -mb-2'>Repetition:</h3>
       
-      <Select onValueChange={handleTypeChange} defaultValue="every">
+      <Select onVaueChange={(value: string) => handleTypeChange(value as "every" | "for-rows" | undefined)}>
         <SelectTrigger className="w-[100%]">
           <SelectValue />
         </SelectTrigger>
