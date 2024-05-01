@@ -13,8 +13,8 @@ describe('count down button tests', () => {
   })
   it('should contain countdown button and  decrements the count value', () => {
     cy.visit('/')
-    cy.get('[data-test="count-down-button"]').should('be.visible')
-    cy.get('[data-test="count-down-button"]').click();
+    cy.get('[data-cy="count-down"]').should('be.visible')
+    cy.get('[data-cy="count-down"]').click();
     cy.get('span').should('contain.text',1) 
   })
   // it('should contain counter progress bar', () => {

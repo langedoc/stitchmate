@@ -16,11 +16,7 @@ export default function CountDownButton () {
   }
 
   return (
-<<<<<<< Updated upstream
     <Button data-cy="count-down" size='icon' variant='secondary' className='' onClick={handleCountDown}>
-=======
-    <Button data-test='count-down-button' size='icon' variant='secondary' className='' onClick={handleCountDown}>
->>>>>>> Stashed changes
       <FaMinus className='fill-neutral-50' />
     </Button>
   );
