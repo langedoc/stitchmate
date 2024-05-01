@@ -11,7 +11,9 @@ import {
 } from "@/components/ui/sheet";
 import {Title} from './title';
 
-interface MenuProps {}; // no props
+interface MenuProps {
+  className?: string;
+}; // no props
 
 import {
   FaListUl,
@@ -24,9 +26,9 @@ import ToggleSound from './toggle-sound';
 
 // const SHEET_SIDES = ["top", "right", "bottom", "left"];
 
-const side:string = "left";
+const side = "left";
 
-export default function Menu() {
+export default function Menu({className}:MenuProps) {
 
   //function handleSubmit () { } // FIX: DO WE NEED THIS? NOT REALLY
 

@@ -56,6 +56,10 @@ const reminders:ReminderType[] = [
 
 ];
 
+interface CounterState extends CounterType {
+  
+}
+
 export const useStore = create<CounterType>()(
   persist((set, get) => {
     return {
@@ -68,8 +72,8 @@ export const useStore = create<CounterType>()(
       clickSoundEnabled: true,
     
       // methods 
-      countUp: function () {
-        return set((state:CounterType):CounterType => {
+      countUp: () => {
+        return set((state) => {
           let newCount = state.count + 1 % 1000;
           if (newCount === 0) newCount = 1;
           return {
@@ -81,7 +85,7 @@ export const useStore = create<CounterType>()(
         );
       },
     
-      countDown: function () {
+      countDown: () => {
         return set((state:CounterType):CounterType => {
           let newCount = state.count - 1;
           if (state.count <= 1) newCount = 1;
@@ -93,7 +97,7 @@ export const useStore = create<CounterType>()(
         });
       },
     
-      resetCount: function () {
+      resetCount: () => {
         return set((state:CounterType):CounterType => {
           const newCount = 1;
           return {
@@ -104,7 +108,7 @@ export const useStore = create<CounterType>()(
         });
       },
     
-      setTitle: function (title) {
+      setTitle: (title) => {
         return set((state:CounterType):CounterType => {
           if (!title) {
             state.id++;
@@ -114,7 +118,7 @@ export const useStore = create<CounterType>()(
         });
       },
     
-      setCount: function (count) {
+      setCount: (count) => {
         return set((state:CounterType):CounterType => {
           return {
             ...state,
@@ -124,7 +128,7 @@ export const useStore = create<CounterType>()(
         });
       },
     
-      setNumOfRows: function (numOfRows) {
+      setNumOfRows: (numOfRows) => {
         return set((state:CounterType):CounterType => {
           if (numOfRows <= 0) return {...state, numOfRows: 0};
           if (numOfRows > 999) return {...state, numOfRows: 999};
@@ -132,11 +136,11 @@ export const useStore = create<CounterType>()(
         });
       },
     
-      setReminder: function (reminder) {
+      setReminder: (reminder) => {
         return set((state:CounterType):CounterType => {
           reminder.id = state.id;
           state.id++;
-          const newReminders = [...state.reminders, reminder];
+          const newReminders:ReminderType[] = [...state.reminders, reminder];
           return {
             ...state,
             reminders: newReminders,
@@ -145,7 +149,7 @@ export const useStore = create<CounterType>()(
         });
       },
     
-      updateReminder: function (updatedReminder) {
+      updateReminder:  (updatedReminder) => {
         return set((state:CounterType):CounterType => {
           const updatedReminders = state.reminders.map((reminder:ReminderType) => {
             if (reminder.id === updatedReminder.id) {
@@ -163,7 +167,7 @@ export const useStore = create<CounterType>()(
         });
       },
     
-      deleteReminder: function (id) {
+      deleteReminder: function (id:number) {
         return set((state:CounterType) => {
           const updatedReminders = state.reminders.filter((reminder:ReminderType) => reminder.id !== id);
           return {
@@ -174,7 +178,7 @@ export const useStore = create<CounterType>()(
         });
       },
     
-      toggleSound: function ():boolean {
+      toggleSound: function () {
         return set((state:CounterType):CounterType => ({...state, clickSoundEnabled: !state.clickSoundEnabled}));
       },
     };
@@ -185,13 +189,13 @@ export const useStore = create<CounterType>()(
     },
   ));
 
-export function findReminder (id:number):(ReminderType | undefined) {
+export function findReminder (id:number):(ReminderType | any) {
   return function (state:CounterType):(ReminderType | undefined) {
-    return state.reminders.find((reminder:ReminderType):(ReminderType | undefined) => reminder.id === id);
+    return state.reminders.find((reminder:ReminderType) => reminder.id === id);
   };
 }
 
-export function selectNotifiableNextReminders (state:CounterType) {
+export function selectNotifiableNextReminders (state:any):ReminderType[] {
   return state.nextReminders.filter((reminder:ReminderType) => reminder.notification);
 }
 
@@ -206,14 +210,14 @@ function selectNextReminders (reminders:ReminderType[], count:number) {
 
   return reminders.filter((reminder:ReminderType) => {
     if (reminder.type === 'every') {
-      if (reminder.repeat.start > count) return false;
+      if (Number(reminder.repeat.start) > count) return false;
 
-      return (count - reminder.repeat.start) % reminder.repeat.interval === 0
-        && (count - reminder.repeat.start) / reminder.repeat.interval <= reminder.repeat.times;
+      return (count - Number(reminder.repeat.start)) % Number(reminder.repeat.interval) === 0
+        && (count - Number(reminder.repeat.start)) / Number(reminder.repeat.interval) <= Number(reminder.repeat.times);
   
     }
 
-    return count >= reminder.repeat.from && count <= reminder.repeat.until;
+    return count >= Number(reminder.repeat.from) && count <= Number(reminder.repeat.until);
   
   });
 }

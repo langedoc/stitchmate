@@ -8,7 +8,7 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
   AlertDialogTrigger,
-} from "@/components/ui/alert-dialog.tsx";
+} from "@/components/ui/alert-dialog";
 import {Button} from "@/components/ui/button";
 
 import {FaArrowRotateLeft} from "react-icons/fa6";

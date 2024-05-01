@@ -14,9 +14,9 @@ function Page () {
   const router = useRouter();
   const params = useParams();
 
-  const reminder: ReminderType | undefined = useStore(findReminder(parseInt(params.id)))!;
+  const reminder: ReminderType = useStore(findReminder(+params.id))!;
 
-  function handleSubmit (newReminder: CounterType) {
+  function handleSubmit (newReminder:ReminderType) {
     newReminder.id = reminder.id;
     updateReminder(newReminder);
     router.push("/");
@@ -35,7 +35,7 @@ function Page () {
     <div className='mx-4 my-3'>
       <div className='flex flex-row justify-between mb-4 items-center'>
         <h1 className='font-semibold text-lg text-slate-800 pl-1'> Edit Reminder</h1>
-        <DeleteReminder reminderId={reminder.id} handleDelete={handleDelete}></DeleteReminder>
+        <DeleteReminder reminderId={+reminder.id} handleDelete={handleDelete}></DeleteReminder>
       </div>
       <section>
         <ReminderForm reminder={reminder} handleFormSubmit={handleSubmit} />

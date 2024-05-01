@@ -42,7 +42,7 @@ const Page: React.FC<Props> = () => {
 
 function ReminderNotification () {
 
-  const nextReminders: ReminderType[] = useStore(selectNotifiableNextReminders);
+  const nextReminders:ReminderType[] = useStore(selectNotifiableNextReminders);
 
   return (
     <div className="flex gap-4 position relative z-20 ">

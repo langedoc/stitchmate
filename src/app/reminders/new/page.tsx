@@ -9,7 +9,7 @@ import { ReminderType } from "@/components/reminder/reminder_def";
 import { CounterType } from "@/app/counter_def";
 
 
-const Page: FC = () => {
+const Page = () => {
   const {count, setReminder} = useStore();
   const router = useRouter();
 
@@ -26,7 +26,7 @@ const Page: FC = () => {
     }
   };
 
-  function handleSubmit(newReminder:CounterType):void {
+  function handleSubmit(newReminder:ReminderType):void {
     setReminder(newReminder);
     router.push("/");
   }
